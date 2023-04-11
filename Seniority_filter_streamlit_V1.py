@@ -55,8 +55,9 @@ def app():
         # display the link
         st.markdown(href_url, unsafe_allow_html=True)
 
-
-        # Display both filtered and unfiltered data in two windows
+##### DISPLAY OF RESULTS #####
+        
+        # Display both filtered and unfiltered data in two windows with links to download each below
         col1, col2 = st.beta_columns(2)
         with col1:
             st.write("Unfiltered Data")
@@ -66,6 +67,9 @@ def app():
             st.write("Filtered Data")
             st.write(dffiltered)
             st.markdown(href_filtered, unsafe_allow_html=True)
+            
+        # Display the link to download profile URLs of filtered data only
+        st.markdown(href_url, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     app()
