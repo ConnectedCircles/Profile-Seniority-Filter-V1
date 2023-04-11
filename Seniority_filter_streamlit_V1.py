@@ -49,3 +49,22 @@ def app():
         csv_url = url_df.to_csv(index=False, header=False)
         b64_url = base64.b64encode(csv_url.encode('utf-8')).decode()
         href_url = f'<a href="data:file/csv;base64,{b64_url}" download="filtered_urls.csv">Download Filtered Profile URLs</a>'
+
+        # Download link for unfiltered data
+        csv_unfiltered = df.to_csv(index=False)
+        b64_unfiltered = base64.b64encode(csv_unfiltered.encode('utf-8')).decode()
+        href_unfiltered = f'<a href="data:file/csv;base64,{b64_unfiltered}" download="unfiltered_data.csv">Download Unfiltered CSV File</a>'
+
+        # Display both filtered and unfiltered data in two windows
+        col1, col2 = st.beta_columns(2)
+        with col1:
+            st.write("Unfiltered Data")
+            st.write(df)
+            st.markdown(href_unfiltered, unsafe_allow_html=True)
+        with col2:
+            st.write("Filtered Data")
+            st.write(dffiltered)
+            st.markdown(href_filtered, unsafe_allow_html=True)
+
+if __name__ == "__main__":
+    app()
