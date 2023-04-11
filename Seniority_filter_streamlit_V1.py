@@ -41,11 +41,6 @@ def app():
         csv_filtered = dffiltered.to_csv(index=False)
         b64_filtered = base64.b64encode(csv_filtered.encode('utf-8')).decode()
         href_filtered = f'<a href="data:file/csv;base64,{b64_filtered}" download="filtered_data.csv">Download Filtered CSV File</a>'
-        
-        # Download link for unfiltered data
-        csv_unfiltered = df.to_csv(index=False)
-        b64_unfiltered = base64.b64encode(csv_unfiltered.encode('utf-8')).decode()
-        href_unfiltered = f'<a href="data:file/csv;base64,{b64_unfiltered}" download="unfiltered_data.csv">Download Unfiltered CSV File</a>'
 
         # Display both filtered and unfiltered data in two windows
         col1, col2 = st.beta_columns(2)
