@@ -52,6 +52,8 @@ def app():
         csv_url = url_col.to_csv(index=False, header=False)
         b64_url = base64.b64encode(csv_url.encode('utf-8')).decode()
         href_url = f'<a href="data:file/csv;base64,{b64_url}" download="profile_urls.csv">Download Profile URLs CSV File</a>'
+        # display the link
+        st.markdown(href, unsafe_allow_html=True)
 
 
         # Display both filtered and unfiltered data in two windows
