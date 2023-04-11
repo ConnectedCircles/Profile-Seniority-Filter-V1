@@ -46,6 +46,13 @@ def app():
         csv_unfiltered = df.to_csv(index=False)
         b64_unfiltered = base64.b64encode(csv_unfiltered.encode('utf-8')).decode()
         href_unfiltered = f'<a href="data:file/csv;base64,{b64_unfiltered}" download="unfiltered_data.csv">Download Unfiltered CSV File</a>'
+        
+        # Download link for filtered data URLs only, no header
+        url_col = dffiltered["Profile url"].dropna().astype(str)
+        csv_url = url_col.to_csv(index=False, header=False)
+        b64_url = base64.b64encode(csv_url.encode('utf-8')).decode()
+        href_url = f'<a href="data:file/csv;base64,{b64_url}" download="profile_urls.csv">Download Profile URLs CSV File</a>'
+
 
         # Display both filtered and unfiltered data in two windows
         col1, col2 = st.beta_columns(2)
