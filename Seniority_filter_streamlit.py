@@ -9,7 +9,10 @@ def app():
     substringsCS = ['CEO', 'COO', 'CFO', 'CTO', 'CHRO', 'CMO', 'CLO', 'CSO', 'CIO', 'CTIO', 'CSIO', 'CCO', 'CDO', 'VP']
     # Case insensitive substring 
     substringsCI = ['Chief','Vice President', 'Vice-President', 'Partner', 'Owner', 'Founder','President']
-
+    
+    st.title("Seniority Filter V1")
+    st.subheader("Property of Connected Circles")
+    
     # File uploader
     uploaded_file = st.file_uploader("Choose a CSV file to filter", type="csv")
 
