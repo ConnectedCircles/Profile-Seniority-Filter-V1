@@ -3,6 +3,11 @@ import streamlit as st
 import base64
 
 def app():
+    
+    # Set title and subtitle
+    st.title("Seniority Filter V2")
+    st.subheader("Property of Connected Circles")
+    
     # Define the list of substrings to search for
     # Case sensitive substring
     default_substringsCS = ['CEO', 'COO', 'CFO', 'CTO', 'CHRO', 'CMO', 'CLO', 'CSO', 'CIO', 'CTIO', 'CSIO', 'CCO', 'CDO', 'VP']
@@ -14,9 +19,6 @@ def app():
     substringsCI = st.text_input("Enter case-insensitive keywords separated by comma", ", ".join(default_substringsCI)).split(",")
     
     
-    # Set title and subtitle
-    st.title("Seniority Filter V2")
-    st.subheader("Property of Connected Circles")
     
     # File uploader
     uploaded_file = st.file_uploader("Choose a CSV file to filter", type="csv")
@@ -48,4 +50,3 @@ def app():
 
 if __name__ == "__main__":
     app()
-
