@@ -21,8 +21,10 @@ def app():
     # File uploader
     uploaded_file = st.file_uploader("Choose a CSV file to filter", type="csv")
 
-    if uploaded_file is not None:
+if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
+
+        if st.button("Filter"):
 
         # Create a boolean mask to identify rows where the "Title" column contains any of the case-sensitive substrings
         maskCS = df['Title'].str.contains('|'.join(substringsCS))
