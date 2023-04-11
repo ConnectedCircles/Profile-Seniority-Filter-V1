@@ -52,7 +52,7 @@ def app():
             url_col = dffiltered["Profile url"].dropna().astype(str)
             csv_url = url_col.to_csv(index=False, header=False)
             b64_url = base64.b64encode(csv_url.encode('utf-8')).decode()
-            href_url = f'<a href="data:file/csv;base64,{b64_url}" download="profile_urls
+            href_url = f'<a href="data:file/csv;base64,{b64_url}" download="profile_urls.csv">Download Profile URLs CSV File</a>'
 
 
 ##### DISPLAY OF RESULTS #####
