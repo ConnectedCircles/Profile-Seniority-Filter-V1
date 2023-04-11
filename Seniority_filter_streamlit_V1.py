@@ -38,7 +38,7 @@ def app():
         dffiltered = dffiltered.drop("CXO+", axis=1)
         
         # Create a new dataframe with only the "Profile URL" column for the filtered data
-        url_df = dffiltered[["Profile URL"]]
+        url_df = dffiltered[["Profile url"]]
         
         # Download link for filtered data
         csv_filtered = dffiltered.to_csv(index=False)
