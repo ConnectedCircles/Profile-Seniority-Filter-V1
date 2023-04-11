@@ -36,20 +36,12 @@ def app():
         # Filter to only include CXO+, delete CXO+ column
         dffiltered = df[df["CXO+"]=="Yes"]
         dffiltered = dffiltered.drop("CXO+", axis=1)
-        
-        # Create a new dataframe with only the "Profile URL" column for the filtered data
-        url_df = dffiltered[["Profile url"]]
-        
+
         # Download link for filtered data
         csv_filtered = dffiltered.to_csv(index=False)
         b64_filtered = base64.b64encode(csv_filtered.encode('utf-8')).decode()
         href_filtered = f'<a href="data:file/csv;base64,{b64_filtered}" download="filtered_data.csv">Download Filtered CSV File</a>'
         
-        # Download link for "Profile URL" column of filtered data
-        csv_url = url_df.to_csv(index=False, header=False)
-        b64_url = base64.b64encode(csv_url.encode('utf-8')).decode()
-        href_url = f'<a href="data:file/csv;base64,{b64_url}" download="filtered_urls.csv">Download Filtered Profile URLs</a>'
-
         # Download link for unfiltered data
         csv_unfiltered = df.to_csv(index=False)
         b64_unfiltered = base64.b64encode(csv_unfiltered.encode('utf-8')).decode()
