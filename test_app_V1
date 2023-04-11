@@ -5,7 +5,7 @@ import base64
 def app():
     
     # Set title and subtitle
-    st.title("Seniority Filter V2")
+    st.title("Seniority Filter V2 test")
     st.subheader("Property of Connected Circles")
     
     # Define the list of substrings to search for
