@@ -18,8 +18,6 @@ def app():
     substringsCS = st.text_input("Enter case-sensitive keywords separated by comma", ", ".join(default_substringsCS)).split(",")
     substringsCI = st.text_input("Enter case-insensitive keywords separated by comma", ", ".join(default_substringsCI)).split(",")
     
-    
-    
     # File uploader
     uploaded_file = st.file_uploader("Choose a CSV file to filter", type="csv")
 
@@ -39,15 +37,26 @@ def app():
         dffiltered = df[df["CXO+"]=="Yes"]
         dffiltered = dffiltered.drop("CXO+", axis=1)
 
-        # Download link
-        csv = dffiltered.to_csv(index=False)
-        b64 = base64.b64encode(csv.encode('utf-8')).decode()
-        href = f'<a href="data:file/csv;base64,{b64}" download="filtered_data.csv">Download Filtered CSV File</a>'
+        # Download link for filtered data
+        csv_filtered = dffiltered.to_csv(index=False)
+        b64_filtered = base64.b64encode(csv_filtered.encode('utf-8')).decode()
+        href_filtered = f'<a href="data:file/csv;base64,{b64_filtered}" download="filtered_data.csv">Download Filtered CSV File</a>'
+        
+        # Download link for unfiltered data
+        csv_unfiltered = df.to_csv(index=False)
+        b64_unfiltered = base64.b64encode(csv_unfiltered.encode('utf-8')).decode()
+        href_unfiltered = f'<a href="data:file/csv;base64,{b64_unfiltered}" download="unfiltered_data.csv">Download Unfiltered CSV File</a>'
 
-        # Display filtered data and download link
-        st.write("Filtered Data:")
-        st.write(dffiltered)
-        st.markdown(href, unsafe_allow_html=True)
+        # Display both filtered and unfiltered data in two windows
+        col1, col2 = st.beta_columns(2)
+        with col1:
+            st.write("Unfiltered Data")
+            st.write(df)
+            st.markdown(href_unfiltered, unsafe_allow_html=True)
+        with col2:
+            st.write("Filtered Data")
+            st.write(dffiltered)
+            st.markdown(href_filtered, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     app()
