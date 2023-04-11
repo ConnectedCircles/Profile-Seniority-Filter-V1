@@ -24,34 +24,35 @@ def app():
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
 
-        # Create a boolean mask to identify rows where the "Title" column contains any of the case-sensitive substrings
-        maskCS = df['Title'].str.contains('|'.join(substringsCS))
+        if st.button("Filter"):
+            # Create a boolean mask to identify rows where the "Title" column contains any of the case-sensitive substrings
+            maskCS = df['Title'].str.contains('|'.join(substringsCS))
 
-        # Create a boolean mask to identify rows where the "Title" column contains any of the case-insensitive substrings
-        maskCI = df['Title'].str.contains('|'.join(substringsCI), case=False)
+            # Create a boolean mask to identify rows where the "Title" column contains any of the case-insensitive substrings
+            maskCI = df['Title'].str.contains('|'.join(substringsCI), case=False)
 
-        # Create a new column called "CXO+" with a value of "Yes" for rows that match either condition, and "No" otherwise
-        df['CXO+'] = (maskCS | maskCI).map({True: 'Yes', False: 'No'})
+            # Create a new column called "CXO+" with a value of "Yes" for rows that match either condition, and "No" otherwise
+            df['CXO+'] = (maskCS | maskCI).map({True: 'Yes', False: 'No'})
 
-        # Filter to only include CXO+, delete CXO+ column
-        dffiltered = df[df["CXO+"]=="Yes"]
-        dffiltered = dffiltered.drop("CXO+", axis=1)
+            # Filter to only include CXO+, delete CXO+ column
+            dffiltered = df[df["CXO+"]=="Yes"]
+            dffiltered = dffiltered.drop("CXO+", axis=1)
 
-        # Download link for filtered data
-        csv_filtered = dffiltered.to_csv(index=False)
-        b64_filtered = base64.b64encode(csv_filtered.encode('utf-8')).decode()
-        href_filtered = f'<a href="data:file/csv;base64,{b64_filtered}" download="filtered_data.csv">Download Filtered CSV File</a>'
-        
-        # Download link for unfiltered data
-        csv_unfiltered = df.to_csv(index=False)
-        b64_unfiltered = base64.b64encode(csv_unfiltered.encode('utf-8')).decode()
-        href_unfiltered = f'<a href="data:file/csv;base64,{b64_unfiltered}" download="unfiltered_data.csv">Download Unfiltered CSV File</a>'
-        
-        # Download link for filtered data URLs only, no header
-        url_col = dffiltered["Profile url"].dropna().astype(str)
-        csv_url = url_col.to_csv(index=False, header=False)
-        b64_url = base64.b64encode(csv_url.encode('utf-8')).decode()
-        href_url = f'<a href="data:file/csv;base64,{b64_url}" download="profile_urls.csv">Download Profile URLs CSV File</a>'
+            # Download link for filtered data
+            csv_filtered = dffiltered.to_csv(index=False)
+            b64_filtered = base64.b64encode(csv_filtered.encode('utf-8')).decode()
+            href_filtered = f'<a href="data:file/csv;base64,{b64_filtered}" download="filtered_data.csv">Download Filtered CSV File</a>'
+
+            # Download link for unfiltered data
+            csv_unfiltered = df.to_csv(index=False)
+            b64_unfiltered = base64.b64encode(csv_unfiltered.encode('utf-8')).decode()
+            href_unfiltered = f'<a href="data:file/csv;base64,{b64_unfiltered}" download="unfiltered_data.csv">Download Unfiltered CSV File</a>'
+
+            # Download link for filtered data URLs only, no header
+            url_col = dffiltered["Profile url"].dropna().astype(str)
+            csv_url = url_col.to_csv(index=False, header=False)
+            b64_url = base64.b64encode(csv_url.encode('utf-8')).decode()
+            href_url = f'<a href="data:file/csv;base64,{b64_url}" download="profile_urls.csv">Download Profile URLs CSV File</a>'
 
 
 ##### DISPLAY OF RESULTS #####
