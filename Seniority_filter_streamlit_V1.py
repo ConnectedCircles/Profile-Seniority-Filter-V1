@@ -7,13 +7,13 @@ def app():
     # Set title and subtitle, additional text
     st.title("Seniority Filter V2")
     st.subheader("Property of Connected Circles")
-    st.text("This app allows you to filter lists of profiles by seniority. By default, it\n"
-            "uses a set of keywords to detect and filter CXO+ level profiles (incl. partners\n" 
-            "and VPs etc.). It uses 2 sets of keywords, one that is case-sensitive and one that is\n"
-            "case insensitive. This avoids errors such as the inclusion of 'aCCOunt managers'\n"
-            "when searching for 'CCO'. Both sets of keywords are fully customizable and\n"
-            "keywords can be added or removed. Keywords must be separated by a comma, whitespace\n"
-            "will be considered a part of a keyword.")
+    st.write("""This app allows you to filter lists of profiles by seniority. By default, it
+                uses a set of keywords to detect and filter CXO+ level profiles (incl. partners
+                and VPs etc.). It uses 2 sets of keywords, one that is case-sensitive and one that is
+                case insensitive. This avoids errors such as the inclusion of 'aCCOunt managers'
+                when searching for 'CCO'. Both sets of keywords are fully customizable and
+                keywords can be added or removed. Keywords must be separated by a comma, whitespace
+                will be considered a part of a keyword.""")
     
     
     # Define the list of substrings to search for
