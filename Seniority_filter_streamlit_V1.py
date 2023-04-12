@@ -8,11 +8,11 @@ def app():
     st.title("Seniority Filter V2")
     st.subheader("Property of Connected Circles")
     st.text("This app allows you to filter lists of profiles by seniority. By default, it \n
-    uses a set of keywords to detect and filter CXO+ level profiles (incl. partners and VPs)\n
-    It uses 2 sets of keywords, one that is case-sensitive and one that is case insensitive.\n
-    This avoids errors such as the  inclusion of 'aCCOunt managers' when searching for 'CCO'\n
-    Both sets of keywords are fully customizable and keywords can be added or removed.\n
-    Keywords must be separated by a comma, whitespace will be considered a part of a keyword.")
+            uses a set of keywords to detect and filter CXO+ level profiles (incl. partners and VPs)\n
+            It uses 2 sets of keywords, one that is case-sensitive and one that is case insensitive.\n
+            This avoids errors such as the  inclusion of 'aCCOunt managers' when searching for 'CCO'\n
+            Both sets of keywords are fully customizable and keywords can be added or removed.\n
+            Keywords must be separated by a comma, whitespace will be considered a part of a keyword.")
     
     
     # Define the list of substrings to search for
