@@ -1,4 +1,3 @@
-keep the structure of this code, but modify it so that the "unfiltered data" preview window doesnt show the column "Location2" and that the "filtered data" preview window does not show the "Location 2" column, but shows the "Country" column, which shows the name of the country. import pandas as pd
 import streamlit as st
 import base64
 from geopy.geocoders import Nominatim
