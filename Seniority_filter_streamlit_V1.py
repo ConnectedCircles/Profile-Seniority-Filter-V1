@@ -7,13 +7,11 @@ def app():
     # Set title and subtitle, additional text
     st.title("Seniority Filter V2")
     st.subheader("Property of Connected Circles")
-    st.write("""This app allows you to filter lists of profiles by seniority. By default, it
-                uses a set of keywords to detect and filter CXO+ level profiles (incl. partners
-                and VPs etc.). It uses 2 sets of keywords, one that is case-sensitive and one that is
-                case insensitive. This avoids errors such as the inclusion of 'aCCOunt managers'
-                when searching for 'CCO'. Both sets of keywords are fully customizable and
-                keywords can be added or removed. Keywords must be separated by a comma, whitespace
-                will be considered a part of a keyword.""")
+    st.write("""This app allows you to filter lists of profiles by seniority. By default, it uses a set of keywords to detect and filter CXO+ level profiles 
+    (incl. partners and VPs etc.). It uses 2 sets of keywords, one that is case-sensitive and one that is case insensitive. This avoids errors such as the 
+    inclusion of 'aCCOunt managers' when searching for 'CCO'. Both sets of keywords are fully customizable and keywords can be added or removed. Keywords must 
+    be separated by a comma, whitespace will be considered a part of a keyword. You can preview the both the labeled and filtered data in the two preview 
+    windows below. You can download the data either labeled, filtered or filtered profile URLs only, all as a .csv""")
     
     
     # Define the list of substrings to search for
@@ -53,13 +51,13 @@ def app():
         # Download link for unfiltered data
         csv_unfiltered = df.to_csv(index=False)
         b64_unfiltered = base64.b64encode(csv_unfiltered.encode('utf-8')).decode()
-        href_unfiltered = f'<a href="data:file/csv;base64,{b64_unfiltered}" download="unfiltered_data.csv">Download Unfiltered CSV File</a>'
+        href_unfiltered = f'<a href="data:file/csv;base64,{b64_unfiltered}" download="unfiltered_data.csv">Download Unfiltered Labeled CSV File</a>'
         
         # Download link for filtered data URLs only, no header
         url_col = dffiltered["Profile url"].dropna().astype(str)
         csv_url = url_col.to_csv(index=False, header=False)
         b64_url = base64.b64encode(csv_url.encode('utf-8')).decode()
-        href_url = f'<a href="data:file/csv;base64,{b64_url}" download="profile_urls.csv">Download Profile URLs CSV File</a>'
+        href_url = f'<a href="data:file/csv;base64,{b64_url}" download="profile_urls.csv">Download Filtered Profile URLs only CSV File</a>'
 
 
 ##### DISPLAY OF RESULTS #####
