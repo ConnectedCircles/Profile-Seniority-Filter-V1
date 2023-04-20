@@ -5,7 +5,7 @@ import base64
 def app():
     
     # Set title and subtitle, additional text
-    st.title("Seniority Filter V2")
+    st.title("Seniority Profile Filter V2")
     st.subheader("Property of Connected Circles")
     st.write("""This app allows you to filter lists of profiles by seniority. By default, it uses a set of keywords to detect and filter CXO+ level profiles 
     (incl. partners and VPs etc.). It uses 2 sets of keywords, one that is case-sensitive and one that is case insensitive. This avoids errors such as the 
@@ -18,7 +18,8 @@ def app():
     # Case sensitive substring
     default_substringsCS = ['CEO', 'COO', 'CFO', 'CTO', 'CHRO', 'CMO', 'CLO', 'CSO', 'CIO', 'CTIO', 'CSIO', 'CCO', 'CDO', 'VP']
     # Case insensitive substring 
-    default_substringsCI = ['Chief','Vice President', 'Vice-President', 'Partner', 'Owner', 'Founder','President','Partner']
+    default_substringsCI = ['chief','vice president', 'vice-president', 'partner ', 'owner', 'founder','president']
+
     
     # Get user input for substrings
     substringsCS = st.text_input("Enter case-sensitive keywords separated by comma", ", ".join(default_substringsCS)).split(",")
